@@ -9,6 +9,7 @@
   },
   "mb": {
     "urlConnection": "amqp://udmpnnyo:LihuSCm0FPZbli2Z0SJAug8oCgIGg1Hc@spider.rmq.cloudamqp.com/udmpnnyo",
-    "todo-list-queue": "todo-list-queue"
+    "todo-list-create-key": "todo-list-queue",
+    "todo-list-exchange": "todo-list"
   }
 }
