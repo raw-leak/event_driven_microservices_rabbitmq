@@ -20,14 +20,12 @@ export class TodoListController {
 
   public addToAmout = async ({ amount, userId }) => {
     try {
-      debugger;
       const added = await this.Model.findByIdAndUpdate(
         { userId },
         { $inc: { amount } }
       );
     } catch (err) {
-      debugger;
-      console.error(err.message);
+      console.warn(err.message);
     }
   };
 }

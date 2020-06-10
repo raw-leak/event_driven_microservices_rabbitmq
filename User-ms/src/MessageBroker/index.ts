@@ -1,24 +1,19 @@
-// import amqp from 'amqplib/callback_api';
 import amqp = require('amqplib');
+import config from 'config';
 
 export class MessageBroker {
-  /**
-   * Initialize connection to rabbitMQ
-   */
 
-  private url;
-  private walletCreateQueue;
-  private walletAddQueue;
+  private url: string;
+  private exchange: string;
+  private todoListKey: string;
   private connection;
   private channel;
-  private queues: object;
 
   constructor() {
     this.url =
       'amqp://udmpnnyo:LihuSCm0FPZbli2Z0SJAug8oCgIGg1Hc@spider.rmq.cloudamqp.com/udmpnnyo';
-    this.walletCreateQueue = 'wallet-create-queue';
-    this.walletAddQueue = 'wallet-add-queue';
-    this.queues = {};
+    this.exchange = config.get('mb.todo-list-exchange');
+    this.todoListKey = config.get('mb.todo-list-create-key');
 
     this.init();
   }
@@ -32,26 +27,19 @@ export class MessageBroker {
   };
 
   /**
-   * Send message to queue to create a new wallet on creating a new user
+   * Send message to queue by key to create a new Todo List on creating a new user
    *
    * @param {Object} msg Message as Object
    */
-  async createNewTodoListByDefault(msg) {
+  createNewTodoListByDefault = (msg) => {
     const bufferedMsg = Buffer.from(JSON.stringify(msg));
 
-    // const queue = this.walletCreateQueue;
-    const exchange  = 'wallet'
-    const key  = 'new1'
+    this.channel.assertExchange(this.exchange, 'direct', { durable: false});
 
-    this.channel.assertExchange(exchange, 'direct', { durable: false});
+    this.channel.publish(this.exchange, this.todoListKey, bufferedMsg);  
 
-    this.channel.publish(exchange, key, bufferedMsg);  
     console.log(" [x] Sent %s", msg);
 
     return true
-  }
-
-  async addToWalletAmout({ userId, amount }) {
-   
   }
 }

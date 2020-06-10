@@ -14,7 +14,7 @@ export class UserController {
 
 
       const newUser = new User(req.body);
-      const response = await this.MessageBroker.createNewWalletByDefault({
+      const response = await this.MessageBroker.createNewTodoListByDefault({
         userId: newUser._id.toString(),
       });
       await newUser.save();
