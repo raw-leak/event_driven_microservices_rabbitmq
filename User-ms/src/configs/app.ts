@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import config from 'config';
 
 //routes
 import { UserRoutes } from '../User/Routes';
@@ -12,6 +13,7 @@ import swaggerDocument = require('./swagger.json');
 class App {
   public app: express.Application = express();
   public userRouter: UserRoutes = new UserRoutes();
+  public port: number = config.get('app.port');
 
   constructor() {
     this.config();
@@ -37,7 +39,7 @@ class App {
     this.app.use(morgan('dev'));
 
     // set port
-    this.app.set('port', process.env.PORT || 3030);
+    this.app.set('port', this.port || 3030);
     console.log(`Worker ${process.pid} started ${process.env.WORKER_NUM}`);
 
     // swagger documentation

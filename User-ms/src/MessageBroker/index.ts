@@ -10,10 +10,9 @@ export class MessageBroker {
   private channel;
 
   constructor() {
-    this.url =
-      'amqp://udmpnnyo:LihuSCm0FPZbli2Z0SJAug8oCgIGg1Hc@spider.rmq.cloudamqp.com/udmpnnyo';
-    this.exchange = config.get('mb.todo-list-exchange');
-    this.todoListKey = config.get('mb.todo-list-create-key');
+    this.url = config.get('broker.urlConnection');
+    this.exchange = config.get('broker.todo-list-exchange');
+    this.todoListKey = config.get('broker.todo-list-create-key');
 
     this.init();
   }

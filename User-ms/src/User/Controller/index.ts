@@ -9,20 +9,18 @@ import { MessageBroker } from '../../MessageBroker';
 export class UserController {
   public MessageBroker: MessageBroker = new MessageBroker();
 
-  public loginExistingUser = async (req: Request, res: Response) => {
+  public loginExistingUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-
-
       const newUser = new User(req.body);
-      const response = await this.MessageBroker.createNewTodoListByDefault({
-        userId: newUser._id.toString(),
-      });
-      await newUser.save();
-      debugger;
+
+      const send = await this.MessageBroker.createNewTodoListByDefault({ userId: newUser._id.toString() });
+
+      if (send) await newUser.save();
+
       res.status(201).json({ message: 'User Created' });
     } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: err.message });
+      console.warn(err);
+      next(err);
     }
   };
 

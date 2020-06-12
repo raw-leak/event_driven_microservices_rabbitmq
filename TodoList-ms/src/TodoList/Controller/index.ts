@@ -7,9 +7,7 @@ export class TodoListController {
 
   public createNew = ({userId}) => new Promise( async(resolve, reject) => {
     try {
-      const newWallet = await this.Model.create({
-        userId
-      });
+      const newWallet = await this.Model.create({ userId });
 
       resolve(newWallet);
     } catch (err) {
@@ -17,15 +15,4 @@ export class TodoListController {
       reject(err);
     }
   });
-
-  public addToAmout = async ({ amount, userId }) => {
-    try {
-      const added = await this.Model.findByIdAndUpdate(
-        { userId },
-        { $inc: { amount } }
-      );
-    } catch (err) {
-      console.warn(err.message);
-    }
-  };
 }

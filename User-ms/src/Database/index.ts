@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
+import config from 'config';
 import logger from 'morgan';
 
 class Connection {
   constructor() {
-    const url =
-      process.env.MONGODB_URI || `mongodb://localhost:27017/node-starter`;
+    const url: string = config.get('db.url')
 
     mongoose.Promise = global.Promise;
     mongoose.set('useNewUrlParser', true);

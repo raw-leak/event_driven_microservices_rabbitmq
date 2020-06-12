@@ -7,7 +7,7 @@
   },
   "broker": {
     "urlConnection": "amqp://localhost:5672",
-    "todo-list-create-key": "todo-list-key",
+    "todo-list-create-key": "todo-list-queue",
     "todo-list-exchange": "todo-list"
   }
 }

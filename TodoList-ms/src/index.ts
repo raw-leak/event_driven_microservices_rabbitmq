@@ -1,5 +1,6 @@
-import { startBroker } from './MessageBroker';
+import { startBroker } from './Events';
 import { TodoListController } from './TodoList/Controller';
+import './Database';
 
 (async () => {
   const Broker = await startBroker();

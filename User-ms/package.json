@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean&& tsc",
-    "start": "npm run build && node ./dist/index",
+    "start": "npm run build && node dist/index.js",
     "dev": "nodemon src/index.ts",
     "dev:d": "node --inspect-brk dist/index.js"
   },

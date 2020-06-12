@@ -1,5 +1,5 @@
 // db config
-import './configs/database';
+import './Database';
 
 // server config
 import app from './configs/app';
