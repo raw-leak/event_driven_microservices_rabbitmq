@@ -12,7 +12,7 @@
 <p align="center">4. TodoList-ms receives the message and creates a default TodoList for the user.</p>
 
 <p align="center">
-<img src="./public/img/rabbitmq-beginners-updated-2.JPG" width="650" alt="RabbitMQ Logo" />
+<img src="./public/img/rabbitmq-beginners-updated-2.jpg" width="650" alt="RabbitMQ Logo" />
 </p>
 
 <p align="center">
